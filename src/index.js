@@ -13,7 +13,7 @@ app.get("/api/test", (req, res) => {
   res.json({ message: "API is working!" });
 });
 
-await connectDB();
+connectDB();
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
