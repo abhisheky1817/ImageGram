@@ -1,9 +1,9 @@
 import express from "express";
 import connectDB from "./config/dbconfig.js";
+import { PORT } from "./config/serverconfig.js";
 
 const app = express();
 
-const PORT = 3000;
 
 app.get("/", (req, res) => {
   res.send("Welcome to ImageGram!");
