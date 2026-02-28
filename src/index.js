@@ -1,6 +1,7 @@
 import express from "express";
 import connectDB from "./config/dbconfig.js";
 import { PORT } from "./config/serverconfig.js";
+import { createPost } from "./controllers/postControllers.js";
 
 const app = express();
 
@@ -9,9 +10,7 @@ app.get("/", (req, res) => {
   res.send("Welcome to ImageGram!");
 });
 
-app.get("/api/test", (req, res) => {
-  res.json({ message: "API is working!" });
-});
+app.post("/posts", createPost); 
 
 connectDB();
 
