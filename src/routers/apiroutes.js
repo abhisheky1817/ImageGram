@@ -1,12 +1,10 @@
 //this api router will trigger when any request starting with /api comes
 
 import express from 'express';
-import postrouter from "./post.js";
-import userrouter from "./user.js";
+import v1Router from "./v1/v1Router.js";
 
 const router = express.Router();  
 
-router.use('/posts', postrouter);  //if the remaining path after /api is /posts, then the request will be forwarded to postrouter
-router.use('/users', userrouter);  //if the remaining path after /api is /users, then the request will be forwarded to userrouter
+router.use('/v1', v1Router);
 
 export default router;
