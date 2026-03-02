@@ -1,7 +1,7 @@
 import express from "express";
 import connectDB from "./config/dbconfig.js";
 import { PORT } from "./config/serverconfig.js";
-import postrouter from "./routers/post.js";
+import apirouter from "./routers/apiroutes.js";
 
 const app = express();
 
@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.text()); 
 
-app.use('/posts',postrouter);
+app.use('/api', apirouter);
 
 app.get("/", (req, res) => {
   res.send("Welcome to ImageGram!");
