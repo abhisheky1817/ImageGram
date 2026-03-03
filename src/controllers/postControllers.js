@@ -57,3 +57,25 @@ export async function deletePost(req, res) {
     }
 }
 
+export async function updatePost(req, res) {
+    try {
+        console.log("req file", req.file);
+        const updateObject = req.body;
+        if(req.file) {
+            updateObject.image = req.file.path;
+        }
+        const response = await updatePostService(req.params.id, updateObject);
+        return res.status(200).json({
+            success: true,
+            message: "Post updated successfully",
+            data: response
+        });
+    } catch(error) {
+        console.log(error);
+        return res.status(500).json({
+            success: false,
+            message: "Internal Server Error"
+        });
+    }
+}
+

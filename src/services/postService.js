@@ -30,7 +30,7 @@ export const deletePostService = async (id) => {
 }
 
 export const updatePostService = async (id, updateObject) => {
-    const post = await updatePostById(id, updateObject);
-    return post;
+    const response = await updatePostById(id, updateObject);
+    return response;
 }
 
