@@ -1,3 +1,4 @@
+import e from "express";
 import { createPost } from "../repositories/postRepositories.js";
 
 export const createServicePost = async (createPostobject) => {
@@ -22,3 +23,14 @@ export const getAllPostsService = async (offset, limit) => {
     }
 
 }
+
+export const deletePostService = async (id) => {
+     const response = await deletePostById(id);
+    return response;
+}
+
+export const updatePostService = async (id, updateObject) => {
+    const post = await updatePostById(id, updateObject);
+    return post;
+}
+
