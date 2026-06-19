@@ -6,6 +6,7 @@ import postrouter from "./post.js";
 const router = express.Router();
 
 router.use('/posts', postrouter);  //if the remaining path after /api/v1 is /posts, then the request will be forwarded to postrouter
+
 //router.use('/users', userrouter);  //if the remaining path after /api/v1 is /users, then the request will be forwarded to userrouter
 
 export default router;
