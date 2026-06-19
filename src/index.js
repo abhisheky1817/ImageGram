@@ -9,6 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.text()); 
 
+//app.use('/api', apirouter);
 app.use('/api', apirouter);
 
 app.get("/", (req, res) => {

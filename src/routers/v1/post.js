@@ -1,18 +1,14 @@
 import express from 'express';
-import { createPost } from "./controllers/postControllers.js";
-import upload from "./config/multerconfig.js";
-import { deletePost, updatePost } from '../../controllers/postControllers.js';
-import { validate } from '../../validators/zodValidators.js';
-import { zodPostSchema } from '../../validators/zodPostSchema.js';
+//import { createPost } from "./controllers/postControllers.js";
+import { createPostController } from '../../controllers/postControllers.js';
+import { upload } from "../../config/multerconfig.js";
+
 
 const router = express.Router();  //router object to modularize routes
 
 
-router.post('/',validate(zodPostSchema), upload.single('image'), createPost);
+router.post('/', upload.single('image'), createPostController);  //if the remaining path after /api/v1/posts is /, then the request will be forwarded to createPostController
 
-router.delete('/:id', deletePost);
-
-router.put('/:id',upload.single('image'), updatePost);
 
 export default router;
 

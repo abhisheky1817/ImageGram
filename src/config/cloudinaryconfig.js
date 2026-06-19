@@ -1,5 +1,6 @@
 import { v2 as cloudinary } from 'cloudinary';
-import { CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET, CLOUDINARY_CLOUD_NAME } from './serverconfig.js';
+
+ import { CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET, CLOUDINARY_CLOUD_NAME } from './serverconfig.js';
 
 cloudinary.config({
      cloud_name: CLOUDINARY_CLOUD_NAME,
@@ -7,19 +8,16 @@ cloudinary.config({
     api_secret: CLOUDINARY_API_SECRET   
 });
 
-export const uploadToCloudinary = async (filePath) => {
-  const result = await cloudinary.uploader.upload(filePath, {
-    folder: "imagegram_posts"
+export const uploadToCloudinary = (fileBuffer) => {
+  return new Promise((resolve, reject) => {
+    const stream = cloudinary.uploader.upload_stream(
+      { folder: 'imagegram' },
+      (error, result) => {
+        if (error) return reject(error);
+        resolve(result.secure_url);
+      }
+    );
+    stream.end(fileBuffer);
   });
-
-  await fs.unlink(filePath);
-
-  return {
-    imageUrl: result.secure_url,
-    publicId: result.public_id
-  };
 };
-
-export default cloudinary;
-
 
