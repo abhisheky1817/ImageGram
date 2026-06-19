@@ -34,4 +34,9 @@ export const deletePostById = async (id) => {
     }
 }
 
+export const updatePost = async (id, updateObject) => {
+  const updatedPost = await Post.findByIdAndUpdate(id, updateObject, { new: true });
+  return updatedPost;
+};
+
 

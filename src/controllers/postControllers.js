@@ -1,4 +1,5 @@
 import { createServicePost ,getAllPostsService } from "../services/postService.js";
+import { updateServicePost } from '../services/postService.js';
 
 
 export const createPostController = async (req, res) => {
@@ -40,6 +41,28 @@ export async function getAllPosts(req, res) {
         });
     }
 }
+
+
+export const updatePostController = async (req, res) => {
+  try {
+    const updateObject = req.body;
+    const fileBuffer = req.file ? req.file.buffer : null;
+
+    const updatedPost = await updateServicePost(req.params.id, updateObject, fileBuffer);
+
+    res.status(200).json({
+      success: true,
+      message: "Post updated successfully",
+      data: updatedPost,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
 
 
 

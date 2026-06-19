@@ -1,5 +1,6 @@
 import { uploadToCloudinary } from '../config/cloudinaryconfig.js';
 import { createPost } from '../repositories/postRepositories.js';
+import { updatePost } from '../repositories/postRepositories.js';
 
 export const createServicePost = async (fileBuffer, caption, user) => {
   const image = await uploadToCloudinary(fileBuffer);
@@ -63,6 +64,16 @@ export async function deletePost(req, res) {
         });
     }
 }
+
+
+export const updateServicePost = async (id, updateObject, fileBuffer) => {
+  if (fileBuffer) {
+    const image = await uploadToCloudinary(fileBuffer); // only upload if a new image was sent
+    updateObject.image = image;
+  }
+  const updatedPost = await updatePost(id, updateObject);
+  return updatedPost;
+};
 
 
 

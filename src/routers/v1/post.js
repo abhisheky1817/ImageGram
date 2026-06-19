@@ -13,6 +13,8 @@ router.get('/', getAllPosts);  //if the remaining path after /api/v1/posts is /,
 
 router.delete('/:id', deletePost);  //if the remaining path after /api/v1/posts is /:id, then the request will be forwarded to deletePostController
 
+router.put('/:id', upload.single('image'), updatePostController);
+
 
 export default router;
 
