@@ -8,4 +8,6 @@ const router = express.Router();
 
 router.post('/signup', validate(zodSignupSchema), signup);
 
+router.post('/signin', validate(zodSigninSchema), signin);
+
 export default router;
